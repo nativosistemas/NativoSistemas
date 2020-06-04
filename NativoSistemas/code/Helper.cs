@@ -17,9 +17,12 @@ namespace NativoSistemas.code
             {
 
                 String contacto_mail_to = System.Configuration.ConfigurationManager.AppSettings["contacto_mail_to"].ToString();
+                String mail_From = System.Configuration.ConfigurationManager.AppSettings["smtp_mailFrom"].ToString(); 
                 String smtp_mail = System.Configuration.ConfigurationManager.AppSettings["smtp_mail"].ToString();
                 String smtp_pass = System.Configuration.ConfigurationManager.AppSettings["smtp_pass"].ToString();
                 String smtp_host = System.Configuration.ConfigurationManager.AppSettings["smtp_host"].ToString();
+                int smtp_port = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["smtp_port"]);
+
                 DateTime? fec = DateTime.Now;
                 string body = string.Empty;
                 body += "<b>Name: </b>" + name + "<br/>";
@@ -30,16 +33,21 @@ namespace NativoSistemas.code
                 MailMessage correo = new System.Net.Mail.MailMessage();
                 string asunto = "NativoSistemas - Contacto";
                 correo.From = new MailAddress(smtp_mail);
+                //correo.From = new MailAddress(mail_From); 
                 correo.To.Add(contacto_mail_to);
                 correo.Subject = asunto;
                 correo.Body = body;
                 correo.IsBodyHtml = true;
                 correo.Priority = MailPriority.Normal;
                 SmtpClient smtp = new System.Net.Mail.SmtpClient(smtp_host);
-                smtp.Credentials = new System.Net.NetworkCredential(smtp_mail, smtp_pass);
-                smtp.Port = 587;//465;//
-                smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
                 //smtp.UseDefaultCredentials = true;
+                smtp.Credentials = new System.Net.NetworkCredential(smtp_mail, smtp_pass);
+                //smtp.Port = 587;// puerto dsd mi local
+                //smtp.Port = 465;// puerto dsd donweb
+                smtp.Port = smtp_port;
+                //smtp.EnableSsl = true;
+
                 smtp.Send(correo);
             }
             catch (Exception ex)

@@ -13,28 +13,30 @@ namespace NativoSistemas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //NativoSistemas.code.Helper.SendMail("Pablo", "llll@mail.com", "213123", "hola mndo");
+
+
+            //NativoSistemas.code.Helper.SendMail("Pablo6", "llll@mail.com", "213123", "hola mndo");
             //if (!IsPostBack)
             //{
-            try
-            {
-                string EncodedResponse = Request.Form["g-recaptcha-response"];//g-Recaptcha-Response
-                                                                              //TextBox1.Text = ReCaptchaClass.ValidateTest(EncodedResponse);
-                                                                              //EncodedResponse = Request.QueryString["g-recaptcha-response"];
-                                                                              // bool IsCaptchaValid = (ReCaptchaClass.Validate(EncodedResponse).ToLower() == "True".ToLower() ? true : false);
+            //try
+            //{
+            //    string EncodedResponse = Request.Form["g-recaptcha-response"];//g-Recaptcha-Response
+            //                                                                  //TextBox1.Text = ReCaptchaClass.ValidateTest(EncodedResponse);
+            //                                                                  //EncodedResponse = Request.QueryString["g-recaptcha-response"];
+            //                                                                  // bool IsCaptchaValid = (ReCaptchaClass.Validate(EncodedResponse).ToLower() == "True".ToLower() ? true : false);
 
-                // if (IsCaptchaValid)
-                if (ReCaptchaClass.ValidateTest(EncodedResponse))
-                {
-                    //Valid Request
-                    Response.Redirect("index_00.html");
-                }
-            }
-            catch (Exception)
-            {
-                //
-                Response.Redirect("index_01.html");
-            }
+            //    // if (IsCaptchaValid)
+            //    if (ReCaptchaClass.ValidateTest(EncodedResponse))
+            //    {
+            //        //Valid Request
+            //        Response.Redirect("index_00.html");
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    //
+            //    Response.Redirect("index_01.html");
+            //}
 
             //g-recaptcha
             // ReCaptchaClass.Validate();
@@ -48,11 +50,12 @@ namespace NativoSistemas
             if (ReCaptchaClass.ValidateTest(g_recaptcha_response))
             {//
                 result = "1";
-                result = NativoSistemas.code.Helper.SendMail(name, email, phone, message);
-                //if (NativoSistemas.code.Helper.SendMail(name, email, phone, message))//
-                //{
-                //    result = "2";
-                //}
+                //result = NativoSistemas.code.Helper.SendMail(name, email, phone, message);
+                if (NativoSistemas.code.Helper.SendMail(name, email, phone, message) == "OK")//
+                {
+                    System.Web.HttpContext.Current.Session["envioMail"] = "OK";
+                    result = "2";
+                }
             }
             return result;
         }

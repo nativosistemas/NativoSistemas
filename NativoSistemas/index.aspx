@@ -198,20 +198,11 @@
             </div>
         </div>
     </section>
-    <%--        <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Urquiza 1455,Rosario,Santa Fe,Argentina&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Urquiza 1455,Rosario,Santa Fe,Argentina&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-    </section>--%>
     <section class="page-section" id="contact">
         <div class="container wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
             <div class="text-center">
                 <h2>Contacto</h2>
                 <hr class="colored" />
-                <%--<p>Please tell us about your next project and we will let you know what we can do to help you.</p>--%>
             </div>
 
             <%--        <form name="sentMessage" id="contactForm" novalidate="">--%>
@@ -294,10 +285,18 @@
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
     </footer>
 
+
+    <% 
+        if (System.Web.HttpContext.Current.Session["envioMail"] != null && System.Web.HttpContext.Current.Session["envioMail"].ToString() == "OK")
+        {
+            Response.Write( "<input id=\"hiddenEnvioMail\"  type=\"hidden\" value=\""+"OK" +"\"/>");
+            System.Web.HttpContext.Current.Session["envioMail"] = null;
+        }
+         %>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="js/main.js?n=1"></script>
+    <script src="js/main.js?n=3"></script>
     <script type="text/javascript">
         $("#menu-close").click(function (e) {
             e.preventDefault();
@@ -344,26 +343,6 @@
                 }
             }
         });
-        //// Disable Google Maps scrolling
-        //// See http://stackoverflow.com/a/25904582/1607849
-        //// Disable scroll zooming and bind back the click event
-        //var onMapMouseleaveHandler = function (event) {
-        //    var that = $(this);
-        //    that.on('click', onMapClickHandler);
-        //    that.off('mouseleave', onMapMouseleaveHandler);
-        //    that.find('iframe').css("pointer-events", "none");
-        //}
-        //var onMapClickHandler = function (event) {
-        //    var that = $(this);
-        //    // Disable the click handler until the user leaves the map area
-        //    that.off('click', onMapClickHandler);
-        //    // Enable scrolling zoom
-        //    that.find('iframe').css("pointer-events", "auto");
-        //    // Handle the mouse leave event
-        //    that.on('mouseleave', onMapMouseleaveHandler);
-        //}
-        //// Enable map zooming with mouse scroll when the user clicks the map
-        //$('.map').on('click', onMapClickHandler);
     </script>
 </body>
 </html>

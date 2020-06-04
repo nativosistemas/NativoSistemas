@@ -1,4 +1,23 @@
-﻿
+﻿var isEnviarMail = null;
+
+$(document).ready(function () {
+
+    if (isEnviarMail == null) {
+        isEnviarMail = $('#hiddenEnvioMail').val();
+        if (typeof isEnviarMail == 'undefined') {
+            isEnviarMail = null;
+        }
+    }
+    if (isEnviarMail != null && isEnviarMail == 'OK') {
+        $('#success').addClass('alert-success');
+        $('#success').html('Se envió correctamente.');
+        var elmnt = document.getElementById("contact");//services - contact
+        elmnt.scrollIntoView();
+        isEnviarMail = null;
+    }
+});
+
+
 var waitingDialog = waitingDialog || (function ($) {
     'use strict';
 
@@ -61,6 +80,8 @@ var waitingDialog = waitingDialog || (function ($) {
 
 })(jQuery);
 
+
+
 function OnFail(ex) {
     clearContacto();
     waitingDialog.hide();
@@ -95,11 +116,11 @@ function OnCallBackSendMail(args) {
     // $('#success').html('');
     $('#success').removeClass('alert-danger');
     $('#success').removeClass('alert-success');
-    if (args == 'OK') {
-
-        clearContacto();
-        $('#success').addClass('alert-success');
-        $('#success').html('Se envió correctamente.');
+    if (args == '2') {
+        location.reload();
+        //clearContacto();
+        //$('#success').addClass('alert-success');
+        //$('#success').html('Se envió correctamente.');
 
     }
     else if (args == '1') {
