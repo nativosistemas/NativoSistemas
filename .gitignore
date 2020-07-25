@@ -260,5 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 
-Kellerhoff/Properties/PublishProfiles/FolderProfile.pubxml
-Web.config
+NativoSistemas/Web.config
