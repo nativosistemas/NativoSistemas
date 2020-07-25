@@ -19,7 +19,7 @@
 <meta property="og:title" content="Nativo Sistemas" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://www.nativosistemas.com/" />
-<meta property="og:image" content="http://www.nativosistemas.com/img/image.png" />
+<meta property="og:image" content="http://www.nativosistemas.com/nativosistemas.jpg" />
 <meta property="og:description" content="Empresa dedicada al desarrollo de sistemas web, software a medida, aplicaciones móviles y e-commerce. Le aportamos soluciones a las empresas con soluciones a medida para cada necesidad." />
     <!-- Open Graph data -->
     <title>Nativo Sistemas</title>
@@ -94,7 +94,7 @@
                 m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-100050785-1', 'auto');
+        ga('create', 'UA-167855458-1', 'auto');
         ga('send', 'pageview');
 
     </script>
